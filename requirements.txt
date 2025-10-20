@@ -1,0 +1,16 @@
+django
+gunicorn
+whitenoise
+psycopg2-binary
+requests
+urllib3
+dj_database_url
+django-filter
+python-decouple
+django-cors-headers
+djangorestframework
+pyspellchecker
+pymupdf
+google-generativeai
+dotenv
+supabase
