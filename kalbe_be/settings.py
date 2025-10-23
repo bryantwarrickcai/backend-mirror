@@ -9,11 +9,9 @@ Docs:
 
 import os
 from pathlib import Path
-import os
 import dj_database_url
 from decouple import config
 from dotenv import load_dotenv
-
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -85,11 +83,14 @@ INSTALLED_APPS = [
     'ocr',
     'csv_export',
     "annotation",
-    "dataset",
     "django_filters",
     "rest_framework",
     "save_to_database",
+    "activity_log",
 ]
+
+# Custom user model
+AUTH_USER_MODEL = 'authentication.User'
 # Email — DEV only: email dikirim ke console/locmem (test)
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 DEFAULT_FROM_EMAIL = "noreply@kalbe.local"
@@ -119,8 +120,10 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'authentication.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'activity_log.middleware.UserInRequestMiddleware',
 ]
 
 ROOT_URLCONF = "kalbe_be.urls"
